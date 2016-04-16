@@ -157,18 +157,17 @@ function removePopUp(element) {
 }
 
 function addChineseRootMouseovers() {
-  rubies = documents.getElementsByClassName('chinese-root-style');
+  rubies = document.getElementsByClassName('chinese-root-style');
   rubies.addEventListener('mouseover', function(event) {
-    chrome.runtime.sendMessage(({
-       message: 'get_chinese_roots",
+    chrome.runtime.sendMessage({
+       message: "get_chinese_roots",
        kanji_list : JSON.stringify([ event.target.textContent ])
-   , function(response) {
+    }, function(response) {
        popUp(event.target, response.chinese_root)
-   }
+    })
   }, false);
   rubies.addEventListener('mouseout', function(event) {
        removePopUp(event.target);
-   }
   }, false);
 }
 
